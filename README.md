@@ -22,12 +22,16 @@ npm create t3-app@latest
 ? What import alias would you like configured? @
 ```
 
+### Install dependencies
+
 ```sh
 npm install --save-dev prettier eslint-config-prettier
 echo {}> .prettierrc.json
 
 # add "prettier" into extends clause of .eslintrc.cjs
 ```
+
+### Create database
 
 ```sh
 touch docker-compose.yml
