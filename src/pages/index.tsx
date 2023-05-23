@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       <main>
         <Box>
           <FormControl fullWidth sx={{ m: 1 }}>
-            <InputLabel htmlFor="name">Name</InputLabel>
+            <InputLabel htmlFor="name">ロール名</InputLabel>
             <OutlinedInput id="name" label="Name" />
           </FormControl>
           {Object.keys(Domain).map((domain) => {
@@ -35,19 +35,19 @@ const Home: NextPage = () => {
               <div key={domain}>
                 <FormControl fullWidth sx={{ m: 1 }}>
                   <FormLabel id="demo-radio-buttons-group-label">
-                    {domain}
+                    {DomainLabelMapper[domain]}
                   </FormLabel>
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     name="radio-buttons-group"
                     row
                   >
-                    {Object.keys(Action).map((action) => (
+                    {[""].concat(Object.keys(Action)).map((action) => (
                       <FormControlLabel
                         key={`${domain}-${action}`}
                         value={action}
                         control={<Radio />}
-                        label={action}
+                        label={ActionLabelMapper[action]}
                       />
                     ))}
                   </RadioGroup>
@@ -60,5 +60,20 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+const DomainLabelMapper = {
+  project: "事業管理",
+  budget: "予算管理",
+  evaluation: "事業評価",
+  user: "ユーザー",
+  role: "ロール",
+  organization: "組織",
+} as const satisfies Record<Domain, string>;
+
+const ActionLabelMapper = {
+  "": "なし",
+  query: "参照",
+  manage: "更新",
+} as const satisfies Record<Action | "", string>;
 
 export default Home;
