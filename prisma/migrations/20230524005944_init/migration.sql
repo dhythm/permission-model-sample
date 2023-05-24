@@ -1,8 +1,8 @@
 -- CreateEnum
-CREATE TYPE "Action" AS ENUM ('query', 'manage');
+CREATE TYPE "Action" AS ENUM ('query', 'mutate');
 
 -- CreateEnum
-CREATE TYPE "Domain" AS ENUM ('user', 'organization', 'role', 'project', 'budget', 'evaluation');
+CREATE TYPE "Domain" AS ENUM ('user', 'organization', 'role', 'project', 'budget', 'evaluation', 'lock');
 
 -- CreateTable
 CREATE TABLE "Example" (

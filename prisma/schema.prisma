@@ -52,8 +52,8 @@ model User {
 }
 
 enum Action {
-  query // reference only
-  manage // mutate (without application) & approve application
+  query
+  mutate
 }
 
 enum Domain {
@@ -63,4 +63,5 @@ enum Domain {
   project
   budget
   evaluation
+  lock
 }

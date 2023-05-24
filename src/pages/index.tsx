@@ -26,35 +26,37 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Box>
-          <FormControl fullWidth sx={{ m: 1 }}>
+          <FormControl fullWidth sx={{ m: 2 }}>
             <InputLabel htmlFor="name">ロール名</InputLabel>
             <OutlinedInput id="name" label="Name" />
           </FormControl>
-          {Object.keys(Domain).map((domain) => {
-            return (
-              <div key={domain}>
-                <FormControl fullWidth sx={{ m: 1 }}>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {DomainLabelMapper[domain]}
-                  </FormLabel>
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    name="radio-buttons-group"
-                    row
-                  >
-                    {[""].concat(Object.keys(Action)).map((action) => (
-                      <FormControlLabel
-                        key={`${domain}-${action}`}
-                        value={action}
-                        control={<Radio />}
-                        label={ActionLabelMapper[action]}
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-              </div>
-            );
-          })}
+          <Box sx={{ m: 2 }}>
+            {Object.keys(Domain).map((domain) => {
+              return (
+                <div key={domain}>
+                  <FormControl fullWidth>
+                    <FormLabel id="demo-radio-buttons-group-label">
+                      {DomainLabelMapper[domain]}
+                    </FormLabel>
+                    <RadioGroup
+                      aria-labelledby="demo-radio-buttons-group-label"
+                      name="radio-buttons-group"
+                      row
+                    >
+                      {[""].concat(Object.keys(Action)).map((action) => (
+                        <FormControlLabel
+                          key={`${domain}-${action}`}
+                          value={action}
+                          control={<Radio />}
+                          label={ActionLabelMapper[action]}
+                        />
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+              );
+            })}
+          </Box>
         </Box>
       </main>
     </>
@@ -68,12 +70,13 @@ const DomainLabelMapper = {
   user: "ユーザー",
   role: "ロール",
   organization: "組織",
+  lock: "更新抑止",
 } as const satisfies Record<Domain, string>;
 
 const ActionLabelMapper = {
   "": "なし",
   query: "参照",
-  manage: "更新",
+  mutate: "更新",
 } as const satisfies Record<Action | "", string>;
 
 export default Home;
